@@ -1,0 +1,168 @@
+* {
+    margin: 0px;
+    padding: 0;
+    font-size: 1.1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+a,
+a:hover,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #6e1b62;
+    --bs-btn-border-color: #6e1b62;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #6e1b62;
+    --bs-btn-hover-border-color: #6e1b62;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #6e1b62;
+    --bs-btn-active-border-color: #6E1B4F;
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #6e1b62;
+    --bs-btn-disabled-border-color: #6e1b62;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+.nav {
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    margin: 45px;
+    align-items: center;
+}
+.box a li{
+    font-size: 1rem;
+}
+.head {
+    width: 400px;
+}
+
+.head img {
+    width: 450px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.box a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+.ser {
+    display: flex;
+    align-items: center;
+}
+
+.test {
+    margin-top: 110px;
+    margin-bottom: 40px;
+}
+
+.user {
+    width: 60px;
+    margin-left: 20px;
+}
+#user {
+    height: auto;
+    width: 100px;
+}
+
+#profile {
+    align-items: center;
+}
+#user {
+    font-size: 17px;
+    padding: 10px;
+    margin-inline: 5px;
+    font-weight: 400;
+    background-color: #6e1b62;
+}
+
+#signout button {
+
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #4f4343;
+    margin-top: 9px;
+}
+
+.hov {
+    padding: 5px;
+    border-radius: 8px;
+    width: 89px;
+}
+
+#login div {
+    line-height: 35px;
+}
+
+#profile a:hover {
+    text-decoration: none !important;
+    color: white;
+}
+
+.search button {
+    padding: revert;
+    height: 32px;
+    position: relative;
+    left: 67px;
+}
+
+.search {
+    position: relative;
+    top: 15px;
+}
+
+#profile {
+    display: flex;
+    align-content: center;
+}
+
+.add {
+    margin: 100px;
+    padding: 17px;
+    text-align: center;
+}
+
+.color {
+    background-color: #cbb7c8;
+    margin-bottom: 30px;
+    height: 20vh;
+}
+
+#que {
+    margin: 150px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 80vw
+}
+
+.dis {
+    display: flex;
+    justify-content: space-around;
+}
+
+.anno {
+    align-items: center;
+}
+
+.prp {
+    width: 30vw;
+    height: 7vh;
+    margin-top: 25px;
+    margin-left: 37vw;
+    font-size: 1.5rem;
+}

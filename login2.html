@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <style>
+        *{
+            overflow: hidden;
+            font-size: 1.1rem;
+            font-family: 'Raleway', sans-serif;
+        }
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+            width: 100vw;
+            margin: 0px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo"><img src="./img/logo.png" alt="" class="mt-5"></div>
+    <div class="main">
+        <div class="mb-5">
+            <h3 class="mb-3">LOG IN</h3>
+            <input type="text" placeholder="Username" id="user" class="form-control mb-3">
+            <input type="password" placeholder="Password" id="pass" class="form-control mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switch">
+                <label class="form-check-label my-1" for="flexSwitchCheckDefault">Keep me Logged In</label>
+            </div>
+            <button type="text" id="sub_btn" class="btn btn-outline-primary mb-1 w-100">LOG IN</button>
+            <a href="Signin.html"><span class="badge text-bg-secondary w-100">Want to Register</span></a>
+        </div>
+    </div>
+
+
+
+    <div class="footer text-center">
+        © Copyright 2022 - 2025 Scrutiny
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwquClXelyimODKdx5YtafUJA2xBa_iy0",
+            authDomain: "scrutiny-42e5b.firebaseapp.com",
+            databaseURL: "https://scrutiny-42e5b-default-rtdb.firebaseio.com",
+            projectId: "scrutiny-42e5b",
+            storageBucket: "scrutiny-42e5b.appspot.com",
+            messagingSenderId: "706713208040",
+            appId: "1:706713208040:web:85dbcdf6f73ffb54fc755d",
+            measurementId: "G-HY0Y3GYKDG"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"
+        const db = getDatabase();
+
+
+
+        const username = document.getElementById('user');
+        const pass = document.getElementById('pass');
+        const submit = document.getElementById('sub_btn');
+
+
+        function authen() {
+            const dbref = ref(db);
+
+            get(child(dbref, "UserList/" + username.value)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    let dbpass = decpass(snapshot.val().password);
+                    if (dbpass == pass.value) {
+                        login(snapshot.val());
+                    }
+                    else {
+                        alert("-------Bad Credential -------");
+                    }
+                }
+                else {
+                    alert("Username or password is invalid");
+                }
+            })
+        }
+
+
+        function decpass(dbpass) {
+            var pass12 = CryptoJS.AES.decrypt(dbpass, pass.value);
+            return pass12.toString(CryptoJS.enc.Utf8);
+        }
+
+        function login(user) {
+            let keeploggedin = document.getElementById("switch").checked;
+
+            if (!keeploggedin) {
+                sessionStorage.setItem('user', JSON.stringify(user));
+                window.location = 'index.html';
+            }
+
+            else {
+                localStorage.setItem('keeploggedin', 'yes')
+                localStorage.setItem('user', JSON.stringify(user));
+                window.location = "index.html";
+            }
+        }
+
+
+        submit.addEventListener('click', authen);
+    </script>
+</body>
+
+</html>
